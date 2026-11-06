@@ -1,7 +1,10 @@
 " VIM Configuration Profile
 
-" Use the PowerLine plugin. Change Python directory if needed.
-set rtp+=$HOME/.local/lib/python3.8/site-packages/powerline/bindings/vim/
+" Use the PowerLine plugin (installed system-wide via the `powerline` apt package).
+" Loading it through python3 avoids hard-coding a Python version in the path.
+if has('python3')
+  silent! python3 from powerline.vim import setup as powerline_setup; powerline_setup(); del powerline_setup
+endif
 
 " Always show statusline
 set laststatus=2
@@ -11,4 +14,3 @@ set t_Co=256
 
 " Always show the command as it is being typed.
 set showcmd
-
